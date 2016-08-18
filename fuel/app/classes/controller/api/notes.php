@@ -1,5 +1,5 @@
 <?php
-class Controller_Notes extends Controller_Rest
+class Controller_Api_Notes extends Controller_Base_Rest
 {
   // protected $format = 'json';
     // メモ一覧を取得する
@@ -14,13 +14,24 @@ class Controller_Notes extends Controller_Rest
             'empty' => null
         );
 
+        // $response = array(
+        //   "notes" => $list
+        // );
+
       //  $query = DB::select()->from('notes');
       //  $viewdata = $query->execute();
       //  var_dump($viewdata);
-      // $query = DB::select()->from('notes')->execute();
-      // var_dump($query);
+      $query = DB::select()->from('notes')->execute();
+      //  var_dump($query);
         // $this->responseに配列として設定する
-        return $this->response($list,200);
+        // return $this->response($list,200);
+
+
+        $response = array(
+          "notes" => $query
+        );
+
+        return $this->success($response);
     }
     // メモを投稿する
     public function post_index()
